@@ -1144,10 +1144,15 @@
 <section id="contact" class="section-pad">
   <div class="container">
     <div class="contact-grid">
+      
+      <!-- LEFT SIDE -->
       <div class="contact-info reveal">
         <p class="section-label">Get in Touch</p>
         <h2 class="section-title">Let's Talk</h2>
-        <p class="section-desc">Have a project in mind or just want to ask a question? Send a message and we'll get back to you.</p>
+        <p class="section-desc">
+          Have a project in mind or just want to ask a question? Send a message and we'll get back to you.
+        </p>
+
         <div class="contact-items">
           <div class="contact-item">
             <div class="contact-item-icon">📞</div>
@@ -1156,6 +1161,7 @@
               <a href="tel:9360998924">9360998924</a>
             </div>
           </div>
+
           <div class="contact-item">
             <div class="contact-item-icon">✉️</div>
             <div class="contact-item-text">
@@ -1163,35 +1169,49 @@
               <a href="mailto:voro.webservice@gmail.com">voro.webservice@gmail.com</a>
             </div>
           </div>
+
           <div class="contact-item">
             <div class="contact-item-icon">📸</div>
             <div class="contact-item-text">
               <span>Instagram</span>
-              <a href="https://www.instagram.com/voroweb/" target="_blank" rel="noopener">@voroweb</a>
+              <a href="https://www.instagram.com/voroweb/" target="_blank" rel="noopener">
+                @voroweb
+              </a>
             </div>
           </div>
         </div>
       </div>
-      <div class="contact-form reveal" style="transition-delay:0.15s">
+
+      <!-- RIGHT SIDE (FORM) -->
+      <form id="contact-form" class="contact-form reveal" style="transition-delay:0.15s">
+        
         <p class="form-title">Send a Message</p>
+
         <div class="form-group">
           <label>Name</label>
-          <input type="text" id="f-name" placeholder="Your name">
+          <input type="text" id="f-name" name="user_name" placeholder="Your name" required>
         </div>
+
         <div class="form-group">
           <label>Email</label>
-          <input type="email" id="f-email" placeholder="your@email.com">
+          <input type="email" id="f-email" name="user_email" placeholder="your@email.com" required>
         </div>
+
         <div class="form-group">
           <label>Message</label>
-          <textarea id="f-msg" placeholder="Tell us about your project or question…"></textarea>
+          <textarea id="f-msg" name="message" placeholder="Tell us about your project or question…" required></textarea>
         </div>
-        <button class="form-submit" onclick="sendForm()">Send Message</button>
+
+        <button type="submit" class="form-submit">Send Message</button>
+
         <p class="form-msg" id="form-msg"></p>
-      </div>
+
+      </form>
+
     </div>
   </div>
 </section>
+  
 
 <!-- Footer -->
 <footer>
@@ -1387,37 +1407,6 @@ function bookMeeting() {
 }
 
 renderCal();
-
-/* ── CONTACT FORM ── */
-function sendForm() {
-  const name = document.getElementById('f-name').value.trim();
-  const email = document.getElementById('f-email').value.trim();
-  const msg = document.getElementById('f-msg').value.trim();
-  const msgEl = document.getElementById('form-msg');
-
-  if (!name || !email || !msg) {
-    msgEl.textContent = 'Please fill in all fields.';
-    msgEl.className = 'form-msg error';
-    return;
-  }
-
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    msgEl.textContent = 'Please enter a valid email address.';
-    msgEl.className = 'form-msg error';
-    return;
-  }
-
-  const subject = encodeURIComponent(`Web Inquiry from ${name}`);
-  const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${msg}`);
-  window.open(`mailto:voro.webservice@gmail.com?subject=${subject}&body=${body}`);
-
-  msgEl.textContent = '✓ Your email client has opened. Please send the message.';
-  msgEl.className = 'form-msg success';
-
-  document.getElementById('f-name').value = '';
-  document.getElementById('f-email').value = '';
-  document.getElementById('f-msg').value = '';
-}
 
 /* ── REVIEW SYSTEM ── */
 let currentStars = 0;
